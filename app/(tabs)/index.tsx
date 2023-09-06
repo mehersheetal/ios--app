@@ -2,14 +2,24 @@ import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
+import { useAuth } from '../context/auth';
+import ViewFavoriteNumber from '../../components/ShowFavoriteNumber';
+
+
 
 export default function TabOneScreen() {
+  const { signOut, user } = useAuth();
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Tab One</Text>
       <View style={styles.separator} lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <EditScreenInfo path="app/(tabs)/index.tsx" />
+      
+      <ViewFavoriteNumber />
+      <View style={styles.container}>
+        <Text style={{fontSize:20, color:'blue', fontWeight:'bold' , textAlign: 'center',}} onPress={() => signOut()} >Sign Out - {user}</Text>
+      </View>
     </View>
+
+    
   );
 }
 
@@ -19,6 +29,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
+  
   title: {
     fontSize: 20,
     fontWeight: 'bold',

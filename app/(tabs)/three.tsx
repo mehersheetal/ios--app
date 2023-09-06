@@ -2,34 +2,18 @@ import { StyleSheet } from 'react-native';
 
 import EditScreenInfo from '../../components/EditScreenInfo';
 import { Text, View } from '../../components/Themed';
-import { auth } from '../../firebaseConfig';
 import { useAuth } from '../context/auth';
-import UpdateFavoriteNumber from '../../components/UpdateFavoriteNumber';
+import ViewFavoriteNumber from '../../components/ShowFavoriteNumber';
 
-const getIsSignedIn = () => {
-  const isLogin = auth?.currentUser?.email;
-  return isLogin == undefined? false:true;
-  //return true;
-};
-
-export default function TabTwoScreen() {
+export default function TabThreeScreen() {
   const { signOut, user } = useAuth();
   return (
     <View style={styles.container}>
       <View lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <UpdateFavoriteNumber />
+      <ViewFavoriteNumber />
       <View style={styles.container}>
         <Text style={{fontSize:20, color:'blue', fontWeight:'bold' , textAlign: 'center',}} onPress={() => signOut()} >Sign Out - {user}</Text>
       </View>
-    </View>
-  );
-}
-
-function tabTwo(){
-  return (
-    <View style={styles.container}>
-      <View lightColor="#eee" darkColor="rgba(255,255,255,0.1)" />
-      <UpdateFavoriteNumber />
     </View>
   );
 }
